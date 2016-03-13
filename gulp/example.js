@@ -33,6 +33,10 @@ gulp.task('example:watch', () => {
   b.transform(babelify);
   const bundle = () => {
     return b.bundle()
+      .on('error', ({message, codeFrame}) => {
+        gutil.log(gutil.colors.red(message));
+        console.log(codeFrame);
+      })
       .pipe(source('bundle.js'))
       .pipe(buffer())
       .pipe(gulp.dest('./example'));
