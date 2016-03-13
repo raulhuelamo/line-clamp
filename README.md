@@ -5,17 +5,17 @@
 ## Features
 
 - Exit if we detect that no truncation is necessary (ie. content does not overflow container).
-- Use a custom string instead of an ellipsis.
+- Allows use of a custom string instead of an ellipsis.
 
 ## Limitations
 
 - Requires some [CSS to be set on the DOM element and its parent](#css).
-- Truncation is in pure JavaScript; does *not* use `-webkit-line-clamp`.
-- Assumes that the text to be truncated does not contain any inline HTML tags.
+- Truncation is in pure JavaScript; does *not* use [`-webkit-line-clamp`](https://css-tricks.com/line-clampin/).
+- Assumes that the text to be truncated does *not* contain any inline HTML tags (eg. `em`, `strong`, etc.).
 
 ## Example
 
-To run the example locally, do:
+To run the [example](example), do:
 
 ```
 $ git clone https://github.com/yuanqing/line-clamp
@@ -70,9 +70,9 @@ import lineClamp from 'line-clamp';
 
   Key | Description | Default
   :--|:--|:--
-  `ellipsisCharacter` | The string to append to the truncated text. | `&hellip;`
-  `lineCount` | The number of lines to show. | `null`
-  `lineHeight` | The `line-height` of each line. | `line-clamp--sticky-above-viewport`
+  `ellipsisCharacter` | The string to append to the truncated text. | '\u2026'
+  `lineCount` | The number of lines to show. | `undefined`
+  `lineHeight` | The pixel `line-height` of each line. Specify just the number eg. `15` instead of `15px`. | `undefined`
 
 - `element` &mdash; A DOM element.
 
