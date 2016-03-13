@@ -1,6 +1,6 @@
 # line-clamp [![npm Version](http://img.shields.io/npm/v/line-clamp.svg?style=flat)](https://www.npmjs.com/package/line-clamp) [![Build Status](https://img.shields.io/travis/yuanqing/line-clamp.svg?branch=master&style=flat)](https://travis-ci.org/yuanqing/line-clamp)
 
-> Truncate multi-line text in a DOM element in vanilla JavaScript.
+> Truncate multi-line text in a DOM element.
 
 ## Features
 
