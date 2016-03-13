@@ -8,8 +8,7 @@ const TRAILING_WHITESPACE_REGEX = /\s+$/;
 function truncateByWord(element, maximumHeight) {
   const innerHTML = element.innerHTML;
 
-  // Split the content of `element` by the space character.
-  const splitCharacter = ' ';
+  // Split the text of `element` by whitespace.
   let chunks = innerHTML.split(WHITESPACE_REGEX);
 
   // The text does not contain whitespace; we need to attempt to truncate
@@ -37,8 +36,8 @@ function truncateByWord(element, maximumHeight) {
   return false;
 }
 
-// Append `ELLPISIS` to `element`, trimming off trailing characters in
-// `element` such that `element` will not exceed the `maximumHeight`.
+// Append `ellipsisCharacter` to `element`, trimming off trailing characters
+// in `element` such that `element` will not exceed the `maximumHeight`.
 function truncateByCharacter(element, maximumHeight, ellipsisCharacter) {
   const innerHTML = element.innerHTML;
   let length = innerHTML.length;
@@ -60,7 +59,6 @@ function lineClamp(maximumHeight, ellipsisCharacter, element) {
     return;
   }
 
-  // Else truncate by word, then truncate by character.
   truncateByWord(element, maximumHeight);
   truncateByCharacter(element, maximumHeight, ellipsisCharacter);
 }
