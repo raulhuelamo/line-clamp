@@ -72,13 +72,13 @@ import lineClamp from 'line-clamp';
 
   Key | Description | Default
   :--|:--|:--
-  `ellipsisCharacter` | The string to append to the truncated text. | '\u2026'
-  `lineCount` | The number of lines to show. | `undefined`
-  `lineHeight` | The pixel `line-height` of each line. Specify just the number eg. `15` instead of `15px`. | `undefined`
+  `ellipsisCharacter` | The string to append to the truncated text. | `\u2026`
+  `lineCount` | *Required.* The number of lines to show. | `undefined`
+  `lineHeight` | *Required.* The pixel `line-height` of each line. Specify just the number eg. `20` instead of `20px`. | `undefined`
 
 - `element` &mdash; A DOM element.
 
-See [Usage](#usage) above for the accompanying HTML structure and CSS.
+See [Usage](#usage) above for the accompanying CSS.
 
 ## Installation
 
