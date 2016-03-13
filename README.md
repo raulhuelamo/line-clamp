@@ -13,16 +13,7 @@
 - Truncation is in pure JavaScript; does *not* use [`-webkit-line-clamp`](https://css-tricks.com/line-clampin/).
 - Assumes that the text to be truncated does *not* contain any inline HTML tags (eg. `em`, `strong`, etc.).
 
-## Example
-
-To run the [example](example), do:
-
-```
-$ git clone https://github.com/yuanqing/line-clamp
-$ npm install
-$ npm install --global gulp
-$ gulp example --open
-```
+## Usage
 
 #### HTML
 
@@ -58,6 +49,17 @@ lineClamp({
 })(element);
 ```
 
+## Example
+
+To run the [example](example), do:
+
+```
+$ git clone https://github.com/yuanqing/line-clamp
+$ npm install
+$ npm install --global gulp
+$ gulp example --open
+```
+
 ## API
 
 ```js
@@ -75,6 +77,8 @@ import lineClamp from 'line-clamp';
   `lineHeight` | The pixel `line-height` of each line. Specify just the number eg. `15` instead of `15px`. | `undefined`
 
 - `element` &mdash; A DOM element.
+
+See [Usage](#usage) above for the accompanying HTML structure and CSS.
 
 ## Installation
 
