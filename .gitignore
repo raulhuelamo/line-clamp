@@ -1,7 +1,6 @@
 .DS_Store
 *.log
 coverage/
-example/bundle.js
 lib/
 node_modules/
 sandbox/
