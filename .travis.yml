@@ -1,0 +1,12 @@
+notifications:
+  email: false
+
+language: node_js
+
+node_js:
+  - '5'
+  - '4'
+
+script:
+  - npm run-script lint
+  - npm run-script prepublish
