@@ -9,7 +9,7 @@
 
 ## Limitations
 
-- Requires some [CSS to be set on the DOM element and its parent](#css).
+- Requires some [CSS to be set on the DOM element and its parent](#css). In particular, the DOM element must have an explicitly set `line-height` in pixels.
 - Truncation is in pure JavaScript; does *not* use [`-webkit-line-clamp`](https://css-tricks.com/line-clampin/).
 - Assumes that the text to be truncated does *not* contain any inline HTML tags (eg. `em`, `strong`, etc.).
 
@@ -43,10 +43,7 @@
 ```js
 import lineClamp from 'line-clamp';
 
-lineClamp({
-  lineCount: 3,
-  lineHeight: 20
-})(element);
+lineClamp(element, { lineCount: 3 });
 ```
 
 ## Example
@@ -66,7 +63,9 @@ $ gulp example --open
 import lineClamp from 'line-clamp';
 ```
 
-### lineClamp(options)(element)
+### lineClamp(element, options)
+
+- `element` &mdash; A DOM element.
 
 - `options` &mdash; An object literal:
 
@@ -74,9 +73,6 @@ import lineClamp from 'line-clamp';
   :--|:--|:--
   `ellipsisCharacter` | The string to append to the truncated text. | `\u2026`
   `lineCount` | *Required.* The number of lines to show. | `undefined`
-  `lineHeight` | *Required.* The pixel `line-height` of each line. Specify just the number eg. `20` instead of `20px`. | `undefined`
-
-- `element` &mdash; A DOM element.
 
 See [Usage](#usage) above for the accompanying CSS.
 
