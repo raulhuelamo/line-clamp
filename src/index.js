@@ -53,20 +53,18 @@ function truncateByCharacter(element, maximumHeight, ellipsisCharacter) {
   }
 }
 
-function lineClamp(maximumHeight, ellipsisCharacter, element) {
+export default function(element, { lineCount, ellipsisCharacter } = {}) {
+
+  // Read the `line-height` of `element`, and use it to compute the height of
+  // `element` required to fit the given `lineCount`.
+  const lineHeight = parseInt(window.getComputedStyle(element).lineHeight, 10);
+  const maximumHeight = lineCount * lineHeight;
+
   // Exit if text does not overflow the `element`.
   if (element.scrollHeight <= maximumHeight) {
     return;
   }
 
   truncateByWord(element, maximumHeight);
-  truncateByCharacter(element, maximumHeight, ellipsisCharacter);
+  truncateByCharacter(element, maximumHeight, ellipsisCharacter || ELLIPSIS);
 }
-
-export default (options = {}) => {
-  return lineClamp.bind(
-    null,
-    options.lineCount * options.lineHeight,
-    options.ellipsisCharacter || ELLIPSIS
-  );
-};
