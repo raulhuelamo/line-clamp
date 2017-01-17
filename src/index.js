@@ -28,7 +28,7 @@ function truncateByWord(element, maximumHeight) {
     // If the new height now exceeds the `maximumHeight` (where it did not
     // in the previous iteration), we know that we are at most one line
     // over the optimal text length.
-    if (element.offsetHeight >= maximumHeight) {
+    if (element.offsetHeight > maximumHeight) {
       return true;
     }
   }
