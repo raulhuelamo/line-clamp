@@ -3,8 +3,9 @@
 > Line clamp a DOM element in vanilla JavaScript.
 
 - Pure JavaScript; does *not* use [`-webkit-line-clamp`](https://css-tricks.com/line-clampin/)
-- Exit if we detect that no truncation is necessary (ie. content does not overflow the element)
+- Works even if the given element contains nested DOM nodes
 - Supports appending a custom string instead of an ellipsis
+- Exit if we detect that no truncation is necessary (ie. content does not overflow the element)
 
 ## Usage
 
@@ -20,7 +21,7 @@ HTML:
 
 CSS:
 
-```
+```css
 .line-clamp {
   width: 100px;
   line-height: 20px;
@@ -42,11 +43,9 @@ Boom:
 </div>
 ```
 
-- `line-clamp` also works even if the given element contains nested DOM nodes
-
 ### Limitations
 
-- The given element is assumed to have a pixel line-height, obtained via [`window.getComputedStyle`](https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle).
+- The element is assumed to have a pixel line-height, obtained via [`window.getComputedStyle`](https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle).
 
 ## API
 
@@ -56,7 +55,9 @@ const lineClamp = require('line-clamp')
 
 ### lineClamp(element, lineCount [, options])
 
-Pass in an `options` object to change the string to append to the truncated text (defaults to `…`).
+`options` is an optional object literal.
+
+- Set `options.ellipsis` to change the string to be appended to the truncated text (defaults to `…`).
 
 See [Usage](#usage).
 
