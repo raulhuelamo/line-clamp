@@ -1,87 +1,77 @@
 # line-clamp [![npm Version](http://img.shields.io/npm/v/line-clamp.svg?style=flat)](https://www.npmjs.com/package/line-clamp) [![Build Status](https://img.shields.io/travis/yuanqing/line-clamp.svg?branch=master&style=flat)](https://travis-ci.org/yuanqing/line-clamp)
 
-> Truncate multi-line text in a DOM element.
+> Line clamp a DOM element in vanilla JavaScript.
 
-## Features
-
-- Exit if we detect that no truncation is necessary (ie. content does not overflow container).
-- Allows use of a custom string instead of an ellipsis.
-
-## Limitations
-
-- Requires some [CSS to be set on the DOM element and its parent](#css). In particular, the DOM element must have an explicitly set `line-height` in pixels.
-- Truncation is in pure JavaScript; does *not* use [`-webkit-line-clamp`](https://css-tricks.com/line-clampin/).
-- Assumes that the text to be truncated does *not* contain any inline HTML tags (eg. `em`, `strong`, etc.).
+- Pure JavaScript; does *not* use [`-webkit-line-clamp`](https://css-tricks.com/line-clampin/)
+- Exit if we detect that no truncation is necessary (ie. content does not overflow the element)
+- Supports appending a custom string instead of an ellipsis
 
 ## Usage
 
-#### HTML
+> [**Editable demo (CodePen)**](https://codepen.io/lyuanqing/pen/VQQVry)
+
+HTML:
 
 ```html
-<div class="line-clamp-wrapper">
-  <div class="line-clamp">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+<div class="line-clamp">
+  Lorem ipsum dolor sit amet, <strong>consectetur adipiscing</strong> elit.
 </div>
 ```
 
-#### CSS
+CSS:
 
-```css
-.line-clamp-wrapper {
-  height: 60px;
-  overflow: hidden;
-}
+```
 .line-clamp {
   width: 100px;
   line-height: 20px;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
 }
 ```
 
-#### JavaScript
+JavaScript:
 
 ```js
-import lineClamp from 'line-clamp';
-
-lineClamp(element, { lineCount: 3 });
+const element = document.querySelector('.line-clamp')
+lineClamp(element, 3)
 ```
 
-## Example
+Boom:
 
-To run the [example](example), do:
+```html
+<div class="line-clamp" style="overflow: hidden; overflow-wrap: break-word; word-wrap: break-word;">
+  Lorem ipsum dolor sit amet, <strong>consectetur…</strong>
+</div>
+```
 
-```
-$ git clone https://github.com/yuanqing/line-clamp
-$ npm install
-$ npm install --global gulp
-$ gulp example --open
-```
+- `line-clamp` also works even if the given element contains nested DOM nodes
+
+### Limitations
+
+- The given element is assumed to have a pixel line-height, obtained via [`window.getComputedStyle`](https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle).
 
 ## API
 
 ```js
-import lineClamp from 'line-clamp';
+const lineClamp = require('line-clamp')
 ```
 
-### lineClamp(element, options)
+### lineClamp(element, lineCount [, options])
 
-- `element` &mdash; A DOM element.
+Pass in an `options` object to change the string to append to the truncated text (defaults to `…`).
 
-- `options` &mdash; An object literal:
-
-  Key | Description | Default
-  :--|:--|:--
-  `ellipsisCharacter` | The string to append to the truncated text. | `\u2026`
-  `lineCount` | *Required.* The number of lines to show. | `undefined`
-
-See [Usage](#usage) above for the accompanying CSS.
+See [Usage](#usage).
 
 ## Installation
 
-Install via [npm](https://npmjs.com):
+Install via [yarn](https://yarnpkg.com):
 
+```sh
+$ yarn add line-clamp
 ```
-$ npm i --save line-clamp
+
+Or [npm](https://npmjs.com):
+
+```sh
+$ npm install --save line-clamp
 ```
 
 ## Prior art
