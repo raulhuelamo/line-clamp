@@ -30,5 +30,11 @@
     <div class="line-clamp">團化地得王會直的坡室而個說者眾際</div>
   </div>
   <script src="/bundle.js"></script>
+  <script>
+    const elements = [].slice.call(document.querySelectorAll('.line-clamp'))
+    elements.forEach(function (element) {
+      lineClamp(element, { lineCount: 3 })
+    })
+  </script>
 </body>
 </html>

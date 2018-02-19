@@ -4,9 +4,7 @@ notifications:
 language: node_js
 
 node_js:
-  - '5'
-  - '4'
+  - 'node'
 
 script:
-  - npm run-script lint
-  - npm run-script prepublish
+  - yarn lint
