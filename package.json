@@ -1,7 +1,7 @@
 {
   "name": "line-clamp",
   "version": "0.0.4",
-  "description": "Truncate multi-line text in a DOM element.",
+  "description": "Line clamp a DOM element in vanilla JavaScript.",
   "author": "Lim Yuan Qing",
   "license": "MIT",
   "repository": {
