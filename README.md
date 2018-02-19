@@ -5,7 +5,8 @@
 - Pure JavaScript; does *not* use [`-webkit-line-clamp`](https://css-tricks.com/line-clampin/)
 - Works even if the given element contains nested DOM nodes
 - Supports appending a custom string instead of an ellipsis
-- Exit if we detect that no truncation is necessary (ie. content does not overflow the element)
+- Exit if we detect that content does not actually overflow the element
+- 494 bytes gzipped
 
 ## Usage
 
