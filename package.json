@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "concurrently \"watchify index.js --standalone lineClamp --outfile example/bundle.js\" \"ecstatic example --port 8080\" \"opn 'http://0.0.0.0:8080/'\"",
-    "lint": "prettier-standard index.js test/index.js --no-semi --single-quote --write",
+    "lint": "prettier-standard index.js --no-semi --single-quote --write",
     "weight": "uglifyjs index.js --compress --mangle --toplevel | gzip-size"
   },
   "keywords": [
