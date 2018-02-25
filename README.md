@@ -2,11 +2,10 @@
 
 > Line clamp a DOM element in vanilla JavaScript.
 
-- Pure JavaScript; does *not* use [`-webkit-line-clamp`](https://css-tricks.com/line-clampin/)
+- Truncates in pure JavaScript; does *not* rely on [`-webkit-line-clamp`](https://css-tricks.com/line-clampin/)
 - Works even if the given element contains nested DOM nodes
-- Supports appending a custom string instead of an ellipsis
-- Exit if we detect that content does not actually overflow the element
-- 494 bytes gzipped
+- Supports appending a custom string instead of an ellipsis (`…`)
+- 476 bytes gzipped
 
 ## Usage
 
@@ -80,6 +79,7 @@ $ npm install --save line-clamp
 
 - [Clamp.js](https://github.com/josephschmitt/Clamp.js)
 - [FTEllipsis](https://github.com/ftlabs/ftellipsis)
+- [Shave](https://github.com/dollarshaveclub/shave)
 
 ## License
 
