@@ -4,35 +4,26 @@ function truncateTextNode (
   maximumHeight,
   ellipsisCharacter
 ) {
-  truncateTextNodeByWord(
-    textNode,
-    rootElement,
-    maximumHeight,
-    ellipsisCharacter
-  )
+  var lastIndexOfWhitespace
+  var textContent = textNode.textContent
+  while (textContent.length > 1) {
+    lastIndexOfWhitespace = textContent.lastIndexOf(' ')
+    if (lastIndexOfWhitespace == -1) {
+      break
+    }
+    textNode.textContent = textContent.substring(0, lastIndexOfWhitespace)
+    if (rootElement.scrollHeight <= maximumHeight) {
+      textNode.textContent = textContent
+      break
+    }
+    textContent = textNode.textContent
+  }
   return truncateTextNodeByCharacter(
     textNode,
     rootElement,
     maximumHeight,
     ellipsisCharacter
   )
-}
-
-function truncateTextNodeByWord (textNode, rootElement, maximumHeight) {
-  var lastIndexOfWhitespace
-  var textContent = textNode.textContent
-  while (textContent.length > 1) {
-    lastIndexOfWhitespace = textContent.lastIndexOf(' ')
-    if (lastIndexOfWhitespace == -1) {
-      return
-    }
-    textNode.textContent = textContent.substring(0, lastIndexOfWhitespace)
-    if (rootElement.scrollHeight <= maximumHeight) {
-      textNode.textContent = textContent
-      return
-    }
-    textContent = textNode.textContent
-  }
 }
 
 var TRAILING_WHITESPACE_AND_PUNCTUATION_REGEX = /[ .,;!?'‘’“”\-–—]+$/
