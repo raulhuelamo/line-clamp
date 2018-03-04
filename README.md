@@ -57,7 +57,7 @@ const lineClamp = require('line-clamp')
 
 `options` is an optional object literal.
 
-- Set `options.ellipsis` to change the string to be appended to the truncated text (defaults to `…`).
+- Set `options.ellipsis` to change the string to be appended to the truncated text. Defaults to `…`.
 
 See [Usage](#usage).
 
