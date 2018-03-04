@@ -5,7 +5,7 @@
 - Truncates in pure JavaScript; does *not* rely on [`-webkit-line-clamp`](https://css-tricks.com/line-clampin/)
 - Works even if the given element contains nested DOM nodes
 - Supports appending a custom string instead of an ellipsis (`…`)
-- 476 bytes gzipped
+- 477 bytes gzipped
 
 ## Usage
 
