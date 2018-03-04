@@ -8,7 +8,7 @@ function truncateTextNode (
   var textContent = textNode.textContent
   while (textContent.length > 1) {
     lastIndexOfWhitespace = textContent.lastIndexOf(' ')
-    if (lastIndexOfWhitespace == -1) {
+    if (lastIndexOfWhitespace === -1) {
       break
     }
     textNode.textContent = textContent.substring(0, lastIndexOfWhitespace)
@@ -61,14 +61,14 @@ function truncateElementNode (
     var childNode = childNodes[i--]
     var nodeType = childNode.nodeType
     if (
-      (nodeType == 1 &&
+      (nodeType === 1 &&
         truncateElementNode(
           childNode,
           rootElement,
           maximumHeight,
           ellipsisCharacter
         )) ||
-      (nodeType == 3 &&
+      (nodeType === 3 &&
         truncateTextNode(
           childNode,
           rootElement,
