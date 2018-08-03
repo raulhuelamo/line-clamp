@@ -95,7 +95,7 @@ module.exports = function (rootElement, lineCount, options) {
 
   // Exit if text does not overflow `rootElement`.
   if (rootElement.scrollHeight <= maximumHeight) {
-    return
+    return false
   }
 
   truncateElementNode(
@@ -104,4 +104,6 @@ module.exports = function (rootElement, lineCount, options) {
     maximumHeight,
     (options && options.ellipsis) || ELLIPSIS_CHARACTER
   )
+
+  return true;
 }
