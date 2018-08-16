@@ -26,7 +26,7 @@ function truncateTextNode (
   )
 }
 
-var TRAILING_WHITESPACE_AND_PUNCTUATION_REGEX = /[ .,;!?'‘’“”\-–—]+$/
+var TRAILING_WHITESPACE_AND_PUNCTUATION_REGEX = /[ ,;!?'‘’“”\-–—]+$/
 function truncateTextNodeByCharacter (
   textNode,
   rootElement,
@@ -98,11 +98,13 @@ module.exports = function (rootElement, lineCount, options) {
     return false
   }
 
+  var ellipsis = options ? options.ellipsis === false ? '' : options.ellipsis : ELLIPSIS_CHARACTER;
+
   truncateElementNode(
     rootElement,
     rootElement,
     maximumHeight,
-    (options && options.ellipsis) || ELLIPSIS_CHARACTER
+    ellipsis
   )
 
   return true;
