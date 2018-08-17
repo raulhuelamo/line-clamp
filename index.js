@@ -1,8 +1,13 @@
+var ELLIPSIS_TYPE_ELEMENT = 'element'
+var ELLIPSIS_TYPE_STRING = 'string'
+var ELLIPSIS_CHARACTER = '\u2026'
+
 function truncateTextNode (
   textNode,
   rootElement,
   maximumHeight,
-  ellipsisCharacter
+  ellipsis,
+  ellipsisType
 ) {
   var lastIndexOfWhitespace
   var textContent = textNode.textContent
@@ -22,16 +27,18 @@ function truncateTextNode (
     textNode,
     rootElement,
     maximumHeight,
-    ellipsisCharacter
+    ellipsis,
+    ellipsisType
   )
 }
 
-var TRAILING_WHITESPACE_AND_PUNCTUATION_REGEX = /[ ,;!?'‘’“”\-–—]+$/
+var TRAILING_WHITESPACE_AND_PUNCTUATION_REGEX = /[ \r\n,;!?'‘’“”\-–—]+$/
 function truncateTextNodeByCharacter (
   textNode,
   rootElement,
   maximumHeight,
-  ellipsisCharacter
+  ellipsis,
+  ellipsisType
 ) {
   var textContent = textNode.textContent
   var length = textContent.length
@@ -41,10 +48,20 @@ function truncateTextNodeByCharacter (
       .substring(0, length - 1)
       .replace(TRAILING_WHITESPACE_AND_PUNCTUATION_REGEX, '')
     length = textContent.length
-    textNode.textContent = textContent + ellipsisCharacter
+
+    var endsWithDot = textContent.slice(-1) === '.'
+
+    if (ellipsisType === ELLIPSIS_TYPE_ELEMENT) {
+      textNode.textContent = endsWithDot ? (textContent + ' ') : (textContent + ELLIPSIS_CHARACTER + ' ')
+      rootElement.append(ellipsis)
+    } else {
+      textNode.textContent = endsWithDot ? textContent : textContent + ELLIPSIS_CHARACTER
+    }
+
     if (rootElement.scrollHeight <= maximumHeight) {
       return true
     }
+    if (ellipsisType === ELLIPSIS_TYPE_ELEMENT) rootElement.removeChild(ellipsis)
   }
   return false
 }
@@ -53,7 +70,8 @@ function truncateElementNode (
   element,
   rootElement,
   maximumHeight,
-  ellipsisCharacter
+  ellipsis,
+  ellipsisType
 ) {
   var childNodes = element.childNodes
   var i = childNodes.length - 1
@@ -66,14 +84,16 @@ function truncateElementNode (
           childNode,
           rootElement,
           maximumHeight,
-          ellipsisCharacter
+          ellipsis,
+          ellipsisType
         )) ||
       (nodeType === 3 &&
         truncateTextNode(
           childNode,
           rootElement,
           maximumHeight,
-          ellipsisCharacter
+          ellipsis,
+          ellipsisType
         ))
     ) {
       return true
@@ -82,8 +102,6 @@ function truncateElementNode (
   }
   return false
 }
-
-var ELLIPSIS_CHARACTER = '\u2026'
 
 module.exports = function (rootElement, lineCount, options) {
   rootElement.style.cssText +=
@@ -98,14 +116,16 @@ module.exports = function (rootElement, lineCount, options) {
     return false
   }
 
-  var ellipsis = options ? options.ellipsis === false ? '' : options.ellipsis : ELLIPSIS_CHARACTER;
+  var ellipsis = options ? options.ellipsis === false ? '' : options.ellipsis : ELLIPSIS_CHARACTER
+  var ellipsisType = ellipsis instanceof Element ? ELLIPSIS_TYPE_ELEMENT : ELLIPSIS_TYPE_STRING
 
   truncateElementNode(
     rootElement,
     rootElement,
     maximumHeight,
-    ellipsis
+    ellipsis,
+    ellipsisType
   )
 
-  return true;
+  return true
 }
