@@ -1,8 +1,9 @@
 var ELLIPSIS_TYPE_ELEMENT = 'element'
 var ELLIPSIS_TYPE_STRING = 'string'
 var ELLIPSIS_CHARACTER = '\u2026'
+var LONG_TEXT_NODE_LENGTH = 1000
 
-function truncateTextNode (
+function truncateTextNode(
   textNode,
   rootElement,
   maximumHeight,
@@ -11,6 +12,17 @@ function truncateTextNode (
 ) {
   var lastIndexOfWhitespace
   var textContent = textNode.textContent
+
+  var factor = 0;
+  while (textContent.length >= LONG_TEXT_NODE_LENGTH) {
+    textNode.textContent = textContent.substring(0, LONG_TEXT_NODE_LENGTH * Math.pow(2, factor))
+    if (rootElement.scrollHeight > maximumHeight) {
+      textContent = textNode.textContent
+      break;
+    }
+    factor++;
+  }
+
   while (textContent.length > 1) {
     lastIndexOfWhitespace = textContent.lastIndexOf(' ')
     if (lastIndexOfWhitespace === -1) {
@@ -33,7 +45,7 @@ function truncateTextNode (
 }
 
 var TRAILING_WHITESPACE_AND_PUNCTUATION_REGEX = /[ \r\n,;!?'‘’“”\-–—]+$/
-function truncateTextNodeByCharacter (
+function truncateTextNodeByCharacter(
   textNode,
   rootElement,
   maximumHeight,
@@ -66,7 +78,7 @@ function truncateTextNodeByCharacter (
   return false
 }
 
-function truncateElementNode (
+function truncateElementNode(
   element,
   rootElement,
   maximumHeight,
