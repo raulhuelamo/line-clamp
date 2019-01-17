@@ -116,8 +116,8 @@ function truncateElementNode(
 }
 
 module.exports = function (rootElement, lineCount, options) {
-  rootElement.style.cssText +=
-    'overflow:hidden;overflow-wrap:break-word;word-wrap:break-word'
+  var cssText = rootElement.style.cssText
+  rootElement.style.cssText += 'overflow:hidden;overflow-wrap:break-word;word-wrap:break-word;'
 
   var maximumHeight =
     (lineCount || 1) *
@@ -125,6 +125,7 @@ module.exports = function (rootElement, lineCount, options) {
 
   // Exit if text does not overflow `rootElement`.
   if (rootElement.scrollHeight <= maximumHeight) {
+    rootElement.style.cssText = cssText
     return false
   }
 
@@ -138,6 +139,8 @@ module.exports = function (rootElement, lineCount, options) {
     ellipsis,
     ellipsisType
   )
+
+  rootElement.style.cssText = cssText
 
   return true
 }

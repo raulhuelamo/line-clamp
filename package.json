@@ -1,6 +1,6 @@
 {
   "name": "line-clamp",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Line clamp a DOM element in vanilla JavaScript.",
   "author": "Lim Yuan Qing",
   "license": "MIT",
